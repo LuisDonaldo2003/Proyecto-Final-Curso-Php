@@ -1,59 +1,43 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Descripción del proyecto
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este repositorio contiene una aplicación web construida sobre Laravel (v12) diseñada como base funcional y visual para proyectos modernos. La codebase sigue las convenciones de Laravel y agrupa componentes y mejoras pensadas tanto para desarrollo educativo como para despliegues reales.
 
-## About Laravel
+La aplicación integra varias piezas clave que facilitan la autenticación, el flujo frontend y la experiencia de usuario:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Scaffolding y autenticación:** se incluye soporte para scaffolding de autenticación (referencias a `laravel/breeze` en dependencias de desarrollo) que permite generar rápidamente rutas, vistas y controladores de auth.
+- **OAuth con Google (Socialite):** integra `laravel/socialite` y contiene las variables de entorno para Google OAuth (`GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REDIRECT`) para permitir inicio de sesión mediante Google. Las vistas muestran botones y rutas (`/auth/google/redirect`) que inician el flujo OAuth.
+- **Frontend moderno:** utiliza Vite y estilos modernos (referencias a `vite.config.js`, `tailwind.config.js` y `resources/css/app.css`). Las vistas principales usan la tipografía Inter y estilos personalizados con gradientes, animaciones y diseño responsive.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Mejoras y vistas destacadas
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **`welcome.blade.php`:** la página de bienvenida fue rediseñada con un enfoque visual moderno: título destacado con gradiente, mensaje dinámico (saludo según la hora), botones claros para acceso al dashboard o login/registro, y una sección específica para autenticación rápida con Google. También incorpora pequeñas animaciones y efectos de interacción con JavaScript para mejorar la experiencia.
 
-## Learning Laravel
+- **`resources/views/auth/login.blade.php`:** la vista de login se refactorizó para ofrecer una tarjeta limpia con header en gradiente, inputs con estados de foco, manejo visual de errores, checkbox de "Recordarme", enlaces para recuperación de contraseña y registro, y el botón "Continuar con Google" que conecta con Socialite.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- **UX y accesibilidad:** ambas vistas contienen mejoras de usabilidad (foco claro, tamaños y contrastes adecuados, diseño responsive) y comportamientos interactivos mínimos sin depender de librerías JavaScript pesadas.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Herramientas y pruebas
 
-## Laravel Sponsors
+La codebase incluye utilidades y dependencias orientadas al desarrollo y la calidad:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- `laravel/sanctum` para API auth cuando sea necesario.
+- `laravel/socialite` para proveedores OAuth.
+- `laravel/breeze` en dev para scaffolding de auth si se desea regenerar vistas.
+- Suite de pruebas con Pest/PHPUnit preparada en `tests/`.
 
-### Premium Partners
+### Arquitectura y estructura
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+El proyecto mantiene la estructura estándar de Laravel: rutas en `routes/`, controladores en `app/Http/Controllers/`, modelos en `app/Models/`, migraciones en `database/migrations/`, vistas en `resources/views/` y pruebas en `tests/`. Los scripts de `composer.json` incluyen comandos útiles para tareas comunes de desarrollo.
 
-## Contributing
+### Notas internas
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- El archivo de entorno contiene variables relevantes para OAuth (Google) y configuración de drivers (sesión, cache, colas) que facilitan pruebas locales y despliegues.
+- Las vistas actuales usan CSS y JS inline/ligero para mantener el bundle simple; se puede migrar totalmente a Tailwind/Vite según preferencias del equipo.
 
-## Code of Conduct
+### Contribuciones y extensión
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+El proyecto está preparado para extenderse con nuevas integraciones (más proveedores OAuth, APIs, módulos) y para adaptar el scaffold de auth (usar Breeze o implementar UI personalizada). Quienes colaboren deben priorizar pruebas y mantener la coherencia en estilos y accesibilidad.
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Trabajo realizado por Luis Donaldo López Martínez
